@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+</head>
+
+<style>
+
+    body{
+        background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    }
+    .action-container{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .list-contanier{
+        background-color: lightsalmon;
+        width: 400px;
+        height: 30px0;
+        display: block;
+        margin: 20px auto;
+        padding: 10px;
+        border-radius: 5px;
+        height: 450px;
+        overflow-y: scroll;
+
+    }
+    .item{
+        background-color: darkgoldenrod;
+        height: 20px;
+        padding: 5px;
+        border-radius: 10px;
+        margin: 5px;
+    }
+    input{
+        height: 30px;
+        width: 260px;
+        border-radius: 10px;
+        border: 1px solid black;
+
+    }
+    button{
+        width: 70px;
+        margin-left: 10px;
+        border-radius: 10px;
+        border: 1px solid black;
+    }
+    h1{
+        text-align: center;
+    }
+</style>
+<body>
+
+    <h1>ToDo List</h1>
+    <div class="list-contanier" id="list-contanier">
+
+    <div class="item">Task Item</div>
+</div>
+
+    <div class="action-container">
+
+    <input id="input-todo" type="text" name="" >
+<button onclick="add()">Add</button>
+<button id="remove" onclick="remove()">Remove</button>
+
+<!-- <button onclick="show()">show</button> -->
+</div>
+    <script>
+        let todoList=[];
+
+        const  listFromlocalstorage=localStorage.getItem("todoList");
+        
+        if (listFromlocalstorage) {
+            todoList=JSON.parse(listFromlocalstorage);
+            rendershow()
+        }
+
+        function add() {
+            const inputelement=document.getElementById("input-todo")
+            todoList.push(inputelement.value)
+
+            localStorage.setItem("todoList",JSON.stringify(todoList));
+
+            inputelement.value=""
+
+         
+           rendershow()
+            
+            
+        }
+
+
+        function rendershow() {
+            const listcontanier=document.getElementById("list-contanier")
+            listcontanier.innerText=""
+            
+            for (const todoitem of todoList)
+            {
+                listcontanier.innerHTML+=`<div class="item">${todoitem}</div>`
+            }
+
+           
+
+            
+        }
+
+        function remove(params) {
+            document.getElementById("remove")
+            inputelement.value=""
+        }
+
+       
+    </script>
+</body>
+</html>
